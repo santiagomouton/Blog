@@ -1,1 +1,52 @@
-<p>login works!</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Welcome</mat-card-title>
+            <br>
+        </mat-card-header>
+
+        <div *ngIf="!register, else elseblock">
+            <form class="example-form" [formGroup]="loginData" (ngSubmit)="loginSubmit()">
+                <mat-card-content>
+                    <mat-form-field class="example-full-width">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <input type="password" class="form-control" id="floatingPassword" formControlName="password" matInput placeholder="Password">
+                    </mat-form-field>
+                </mat-card-content>
+
+                <button mat-stroked-button color="primary" type="submit" class="btn-block">Log in</button>
+                <br><br>
+                <p class="center">or</p>
+                <button mat-raised-button color="Basic" class="btn-block" (click)="registerAction()" >Register</button>
+            </form>
+        </div>
+
+        <ng-template #elseblock>
+            <form class="example-form" [formGroup]="loginData" (ngSubmit)="registerSubmit()">
+            
+                <mat-card-content>
+                    <mat-form-field class="example-full-width">
+                        <input type="username" class="form-control" id="floatingusername" formControlName="username" matInput placeholder="Username">
+                    </mat-form-field>
+                
+                    <mat-form-field class="example-full-width">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email" matInput>
+                    </mat-form-field>
+                
+                    <mat-form-field class="example-full-width">
+                        <input type="password" class="form-control" id="floatingPassword" formControlName="password" matInput placeholder="Password">
+                    </mat-form-field>
+                </mat-card-content>
+    
+                <button mat-stroked-button color="primary" class="btn-block">Sign Up</button>
+            </form>
+        </ng-template>
+
+    </mat-card>
+    
+</div>
+
