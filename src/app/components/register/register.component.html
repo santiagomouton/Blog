@@ -6,25 +6,23 @@
             <br>
         </mat-card-header>
 
-        <form class="example-form" [formGroup]="loginData" (ngSubmit)="loginSubmit()">
+        <form class="example-form" [formGroup]="registerData" (ngSubmit)="registerSubmit()">
+                    
             <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input type="username" class="form-control" id="floatingusername" formControlName="username" matInput placeholder="Username">
+                </mat-form-field>
+            
                 <mat-form-field class="example-full-width">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email" matInput>
                 </mat-form-field>
-
+            
                 <mat-form-field class="example-full-width">
                     <input type="password" class="form-control" id="floatingPassword" formControlName="password" matInput placeholder="Password">
                 </mat-form-field>
             </mat-card-content>
 
-            <button mat-stroked-button color="primary" type="submit" class="btn-block">Log in</button>
-            <br><br>
-            <p class="center">or</p>
-            <a [routerLink]="['/register']" mat-raised-button color="Basic" class="btn-block" >Register</a>
+            <button mat-stroked-button color="primary" type="submit" class="btn-block">Sign Up</button>
         </form>
-    
-
     </mat-card>
-    
 </div>
-

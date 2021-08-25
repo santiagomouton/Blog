@@ -1,0 +1,14 @@
+<br> <br>
+<mat-grid-list cols="1" rowHeight="2:1">
+    <mat-grid-tile>
+        <p>{{ user.name }}</p>
+        <p>{{ user.email }}</p>
+        <p>{{ user.phone }}</p>
+        <p>{{ user.company }}</p>
+        <p>{{ user.website }}</p>
+        <p>{{ user.address }}</p>
+    </mat-grid-tile>
+    <mat-grid-tile><a [routerLink]="['/profile', user.id, 'albums']" class="btn-outline-dark">albums</a></mat-grid-tile>
+    <mat-grid-tile><a [routerLink]="['/profile' , user.id, 'posts']" class="btn-outline-dark">posts</a></mat-grid-tile>
+    <mat-grid-tile><a [routerLink]="['/profile' , user.id, 'todos']" class="btn-outline-dark">TODO's</a></mat-grid-tile>
+</mat-grid-list>

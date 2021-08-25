@@ -30,19 +30,19 @@ export class BlogService {
     return this.getQuery( 'users' );
   }
 
-
-  getPost( postId: number ) {
-    return this.getQuery( 'posts?id=' + postId )
-  }
-
-
+  
   getPosts() {
     return this.getQuery( 'posts' );
   }
 
 
+  getPost( postId: number ) {
+    return this.getQuery( 'posts/' + postId )
+  }
+
+
   getPostsFromUser( userId: number ) {
-    return this.getQuery( 'posts?userId=' + userId );
+    return this.getQuery( 'user/' + userId + '/posts' );
   }
 
 
@@ -51,6 +51,29 @@ export class BlogService {
   }
 
 
-  
+  getAlbums() {
+    return this.getQuery( 'albums' )
+  }
+
+
+  getAlbumsFromUser( userId: number ) {
+    return this.getQuery( 'users/' + userId + '/albums' )
+  }
+
+
+  getPhotosFromAlbum( albumId: number ) {
+    return this.getQuery( 'album/' + albumId + '/photos')
+  }
+
+
+  getTodos() {
+    return this.getQuery( 'todos' )
+  }
+
+
+  getTodosFromUser( userId: number ) {
+    return this.getQuery( 'users/' + userId + '/todos' )
+  }
+
 
 }
