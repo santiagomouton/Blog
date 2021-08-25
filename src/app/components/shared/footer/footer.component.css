@@ -1,0 +1,14 @@
+#footer
+{
+    background-color: rgb(23, 56, 161);
+    color: white;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:50px;
+    margin-bottom:0px;
+}
+body
+{
+    margin-bottom:50px;
+}

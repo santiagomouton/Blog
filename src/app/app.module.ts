@@ -20,8 +20,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 /* Components */
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { PostsComponent } from './components/posts/posts.component';
 import { HomeComponent } from './components/home/home.component';
+import { PostComponent } from './components/post/post.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 
 @NgModule({
@@ -29,8 +31,10 @@ import { HomeComponent } from './components/home/home.component';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    PostsComponent,
     HomeComponent,
+    PostComponent,
+    FooterComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
     //NgbModule
   ],
   providers: [],

@@ -1,0 +1,49 @@
+<div class="animated fadeIn container" *ngIf="loading; else elseblock">
+
+    <app-loading class="text-center"></app-loading>
+
+</div>
+
+<ng-template #elseblock>
+    <h1 class="animated fadeIn fast">{{post.biography["full-name"] | filterData | uppercase}} <small>({{hero.name | filterData}})</small></h1>
+
+    <hr>
+
+    <div class="row animated fadeIn fast">
+
+        <div class="text-center col-md-4">
+
+            <img [src]="user.image.url" class="card-img-top w-75" style="border: 3px solid rgb(36, 107, 131);" [alt]="hero.nombre">
+            <br><br>
+            <a href="javascript:history.back()" class="btn btn-outline-primary btn-block">back</a>
+
+        </div>
+
+        <div class="col-md-8">
+            <p>
+                <strong>Occupation:</strong> {{ hero.work.occupation | filterData }}
+            </p>
+            <hr>
+            <p>
+                <strong>Height:</strong> {{ hero.appearance.height[0] | filterData }}
+            </p>
+            <hr>
+            <p><strong>Aliases:</strong> </p>
+            <p *ngFor="let aliases of hero.biography.aliases">
+                {{ aliases | filterData }}
+            </p>
+            <hr>
+            <p>
+                <strong>Eye color:</strong> {{ hero.appearance["eye-color"] | filterData }}
+            </p>
+            <hr>
+            <p>
+                <strong>Hair color:</strong> {{ hero.appearance["hair-color"] | filterData }}
+            </p>
+            <hr>
+            <p>
+                <strong>Base:</strong> {{ hero.work.base | filterData }}
+            </p>
+        </div>
+    </div>
+</ng-template>

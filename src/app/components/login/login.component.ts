@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,8 @@ export class LoginComponent {
   register: boolean;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router
+              private router: Router,
+              private messageService: MessageService
               ) { 
 
     this.register = false;
@@ -37,10 +38,10 @@ export class LoginComponent {
   loginSubmit() {
     // Process checkout data here
     if ( this.loginData.status === 'INVALID' ) {
-      this.messageError( 'You have to give a proper Email, email or pass must have at least 4 characters.' )
+      this.messageService.messageError( 'You have to give a proper Email, email or pass must have at least 4 characters.' )
     }
     else {
-      this.messageSuccess( 'login success' )      
+      this.messageService.messageSuccess( 'login success' )      
       this.router.navigate( ['/home'] )
     }
     this.loginData.reset();
@@ -53,10 +54,10 @@ export class LoginComponent {
   registerSubmit() {
     // Process checkout data here
     if ( this.registerData.status === 'INVALID' ) {
-      this.messageError( 'You have to give a proper Email, username email or pass must have at least 4 characters.' )
+      this.messageService.messageError( 'You have to give a proper Email, username email or pass must have at least 4 characters.' )
     }
     else {
-      this.messageSuccess( 'Register success' )      
+      this.messageService.messageSuccess( 'Register success' )      
       this.router.navigate( ['/home'] )
     }
     this.loginData.reset();
@@ -67,30 +68,5 @@ export class LoginComponent {
     this.register = true;
   }
 
-
-  /**
-  * A elegant windows appears whit messageError of params.
-  * @param messageError Error message.
-  */
-  messageError ( messageError: string ) {
-    Swal.fire({
-      icon:  'error',
-      title: 'Oops...',
-      text:  messageError
-    })
-  }
-  
-  
-  /**
-  * A elegant windows appears whit messageSuccess of params.
-  * @param messageSuccess Success message.
-  */
-  messageSuccess ( messageSuccess: string ){
-    Swal.fire({
-      icon:  'success',
-      title: 'Good job!',
-      text:  messageSuccess
-    })
-  }
 
 }

@@ -3,12 +3,13 @@ import { LoginComponent } from "./components/login/login.component";
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
+import { PostComponent } from './components/post/post.component';
 
 
 export const ROUTES: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'login', component: LoginComponent},
-    { path: 'navbar', component: NavbarComponent},
+    { path: 'post/:id', component: PostComponent},
     { path: '',   pathMatch: 'full', redirectTo: 'home'},
     { path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

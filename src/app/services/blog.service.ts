@@ -31,6 +31,11 @@ export class BlogService {
   }
 
 
+  getPost( postId: number ) {
+    return this.getQuery( 'posts?id=' + postId )
+  }
+
+
   getPosts() {
     return this.getQuery( 'posts' );
   }
