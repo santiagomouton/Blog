@@ -29,7 +29,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
 
     this.activateRoute.params.subscribe( params => {
-        this.getPost( params['postId'] )
+        this.getPost( params['id'] )
       }
     )
     
@@ -37,13 +37,14 @@ export class PostComponent implements OnInit {
 
 
   getPost( postId: number ) {
-    this.blogService.getPost( postId )
-    .subscribe((postData: any) => {
+    this.blogService.getPost( postId ).subscribe((postData: any) => {
+
       if (typeof postData !== 'undefined') {
         this.post = postData
         this.getUser( this.post.userId )
         this.loading = false
       }
+
     },
       (error: any) => console.log(error)
     )
@@ -53,22 +54,27 @@ export class PostComponent implements OnInit {
 
   getUser( userId: any ) {
     this.blogService.getUser( userId ).subscribe((userData: any) => {
+
       if (typeof userData !== 'undefined') {
         this.user = userData
       }
+
     },
-    (error: any) => this.messageService.messageError(error)
+    (error: any) => console.log(error)
     )
   }
 
 
   openComments( postId: any ) {
     this.blogService.getCommentsFromPost( postId ).subscribe((commentsData: any) => {
+
       if (typeof commentsData !== 'undefined') {
         this.comments = commentsData
       }
+      
     },
-    (error: any) => this.messageService.messageError(error))
+    (error: any) => console.log(error)
+    )
   }
 
 }

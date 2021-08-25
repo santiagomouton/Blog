@@ -30,7 +30,7 @@ export class BlogService {
     return this.getQuery( 'users' );
   }
 
-  
+
   getPosts() {
     return this.getQuery( 'posts' );
   }

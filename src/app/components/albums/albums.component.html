@@ -1,1 +1,23 @@
-<p>albums works!</p>
+<br><br>
+
+<div class="animated fadeIn" *ngIf="!loading; else elseblock">
+
+  <div class="row row-cols-1 row-cols-md-3 g-4"> 
+      <div *ngFor="let album of albums; let i=index" class="col-sm-4">
+        <div class="card border-info mb-4" style="max-width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"> #{{ [i+1] }} album</h5>
+            <p class="card-text"> {{ album.title }} </p>
+            <hr>
+            <a [routerLink]="['/albums', album.id, 'photos']" class="btn btn-outline-success">View photos</a>
+            <a [routerLink]="['/profile', album.userId]" class="btn btn-outline-primary">profile</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>
+
+<ng-template #elseblock>
+  <app-loading></app-loading>
+</ng-template>

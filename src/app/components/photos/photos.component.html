@@ -1,1 +1,28 @@
-<p>photos works!</p>
+<div *ngIf="viewPhoto; else elseblock">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div [ngStyle]="{'background-image':'url('+ photos[indexPhoto].url +')'}" class="img-container"></div>
+        </div>
+    </div>
+    <div class="row">
+    <button class="btn btn-outline-primary" (click)= "viewPhoto = false" >back</button>
+    <button class="btn btn-outline-danger" (click)= "viewPhoto = false" >delete</button>
+        <div class="col-md-12 caption-row">
+            <span id = "caption">
+                {{ photos[indexPhoto].title }}
+            </span>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #elseblock>
+    <ul class="thumbnailsList">
+        <li *ngFor="let photo of photos; let i=index">
+            <a (click)="viewPhotoDetail( i )" >
+                <img src="{{photo.thumbnailUrl}}" class="tn" width="200" height="160">
+            </a>
+        </li>
+    </ul>
+</ng-template>

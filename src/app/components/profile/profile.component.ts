@@ -24,17 +24,18 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.activateRoute.params.subscribe( params => {
-      this.blogService.getUser( params['userId'] )
-      .subscribe((userData: any) => {
+
+      this.blogService.getUser( params['id'] ).subscribe((userData: any) => {
+
         if (typeof userData !== 'undefined') {
           this.user = userData
           console.log(this.user)
           this.loading = false
         }
-      },
-      (error: any) => console.log(error)
-    )})
 
+        }
+      )
+    })
   }
 
 }
