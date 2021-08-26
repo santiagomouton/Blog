@@ -38,10 +38,10 @@ export class AlbumsComponent implements OnInit {
 
 
   getAlbums() {
-    this.blogService.getAlbums().subscribe( (albumData: any) => {
+    this.blogService.getAlbums().subscribe( (albumsData: Album[]) => {
 
-      if( typeof albumData !== 'undefined' ){
-        this.albums.push(...albumData)  
+      if( typeof albumsData !== 'undefined' ){
+        this.albums.push(...albumsData)  
         console.log(this.albums);
         this.loading = false
       }
@@ -55,10 +55,9 @@ export class AlbumsComponent implements OnInit {
 
 
   getAlbumsFromUser( userId: number ) {
-    this.blogService.getAlbumsFromUser( userId ).subscribe( (postData: any) =>{
+    this.blogService.getAlbumsFromUser( userId ).subscribe( (albumsData: Album[]) =>{
       
-      this.albums.push(...postData )
-      console.log(this.albums);
+      this.albums.push(...albumsData )
       this.loading = false
     
     }, 

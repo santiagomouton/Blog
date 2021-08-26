@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User, Post, Album, Photo, Todo } from '../models/blogModels';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class BlogService {
   constructor(private http: HttpClient) { }
 
 
-  getQuery( query: string ) {
+  getQuery( query: string ): Observable<any> {
 
     const url = `https://jsonplaceholder.typicode.com/${ query }`;
 
@@ -21,57 +23,57 @@ export class BlogService {
   }
 
 
-  getUser( userId: number ) {
+  getUser( userId: number ): Observable<User> {
     return this.getQuery( 'users/' + userId );
   }
 
 
-  getUsers() {
+  getUsers(): Observable<User[]> {
     return this.getQuery( 'users' );
   }
 
 
-  getPosts() {
+  getPosts(): Observable<Post[]> {
     return this.getQuery( 'posts' );
   }
 
 
-  getPost( postId: number ) {
+  getPost( postId: number ): Observable<Post> {
     return this.getQuery( 'posts/' + postId )
   }
 
 
-  getPostsFromUser( userId: number ) {
+  getPostsFromUser( userId: number ): Observable<Post[]> {
     return this.getQuery( 'user/' + userId + '/posts' );
   }
 
 
-  getCommentsFromPost( postId: number ) {
+  getCommentsFromPost( postId: number ): Observable<Comment[]> {
     return this.getQuery( 'posts/' + postId + '/comments' );
   }
 
 
-  getAlbums() {
+  getAlbums(): Observable<Album[]> {
     return this.getQuery( 'albums' )
   }
 
 
-  getAlbumsFromUser( userId: number ) {
+  getAlbumsFromUser( userId: number ): Observable<Album[]> {
     return this.getQuery( 'users/' + userId + '/albums' )
   }
 
 
-  getPhotosFromAlbum( albumId: number ) {
+  getPhotosFromAlbum( albumId: number ): Observable<Photo[]> {
     return this.getQuery( 'album/' + albumId + '/photos')
   }
 
 
-  getTodos() {
+  getTodos(): Observable<Todo[]> {
     return this.getQuery( 'todos' )
   }
 
 
-  getTodosFromUser( userId: number ) {
+  getTodosFromUser( userId: number ): Observable<Todo[]> {
     return this.getQuery( 'users/' + userId + '/todos' )
   }
 

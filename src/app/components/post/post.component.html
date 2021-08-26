@@ -1,14 +1,13 @@
-<br><br>
-<div class="animated fadeIn container" *ngIf="loading; else elseblock">
+<div class="animated fadeIn container" *ngIf="loading; else elseloading">
 
     <app-loading class="text-center"></app-loading>
 
 </div>
 
-<ng-template #elseblock>
-    <a [routerLink]="['/profile', post.userId]" >
+<ng-template #elseloading>
+    <a [routerLink]="['/profile', post[0].userId]" >
         <h1 class="animated fadeIn fast">
-            {{ user.username }}
+            {{ user[0].username }}
         </h1>
     </a>
 
@@ -16,13 +15,13 @@
 
         <div class="col-md-8">
             <p>
-                <strong> {{ post.title }} </strong>
+                <strong> {{ post[0].title }} </strong>
             </p>
             <p>
-                {{ post.body }}
+                {{ post[0].body }}
             </p>
             <hr>
-            <button (click)="openComments(post.id)" class="btn btn-outline-primary">Comments</button>
+            <button (click)="openComments(post[0].id)" class="btn btn-outline-primary">Comments</button>
         </div>
     </div>
 </ng-template>

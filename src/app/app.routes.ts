@@ -8,19 +8,21 @@ import { RegisterComponent } from './components/register/register.component';
 import { AlbumsComponent } from './components/albums/albums.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { TodosComponent } from './components/todos/todos.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 export const ROUTES: Routes = [
-    { path: 'login'                  ,  component: LoginComponent},
-    { path: 'register'               ,  component: RegisterComponent},
-    { path: 'posts'                  ,  component: PostsComponent},
+    { path: 'login'              ,  component: LoginComponent},
+    { path: 'register'           ,  component: RegisterComponent},
+    { path: 'posts'              ,  component: PostsComponent},
     { path: 'profile/:id/posts'  ,  component: PostsComponent},
     { path: 'post/:id'           ,  component: PostComponent},
     { path: 'profile/:id'        ,  component: ProfileComponent},
+    { path: 'users'              ,  component: UsersComponent},
     { path: 'profile/:id/albums' ,  component: AlbumsComponent},
-    { path: 'albums'                 ,  component: AlbumsComponent},
-    { path: 'albums/:id/photos' ,  component: PhotosComponent},
-    { path: 'todos'                  ,  component: TodosComponent},
+    { path: 'albums'             ,  component: AlbumsComponent},
+    { path: 'albums/:id/photos'  ,  component: PhotosComponent},
+    { path: 'todos'              ,  component: TodosComponent},
     { path: 'profile/:id/todos'  ,  component: TodosComponent},
     { path: '',   pathMatch: 'full', redirectTo: 'posts'},
     { path: '**', pathMatch: 'full', redirectTo: 'posts'}

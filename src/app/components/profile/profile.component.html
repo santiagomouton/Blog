@@ -1,14 +1,27 @@
-<br> <br>
-<mat-grid-list cols="1" rowHeight="2:1">
-    <mat-grid-tile>
-        <p>{{ user.name }}</p>
-        <p>{{ user.email }}</p>
-        <p>{{ user.phone }}</p>
-        <p>{{ user.company }}</p>
-        <p>{{ user.website }}</p>
-        <p>{{ user.address }}</p>
-    </mat-grid-tile>
-    <mat-grid-tile><a [routerLink]="['/profile', user.id, 'albums']" class="btn-outline-dark">albums</a></mat-grid-tile>
-    <mat-grid-tile><a [routerLink]="['/profile' , user.id, 'posts']" class="btn-outline-dark">posts</a></mat-grid-tile>
-    <mat-grid-tile><a [routerLink]="['/profile' , user.id, 'todos']" class="btn-outline-dark">TODO's</a></mat-grid-tile>
-</mat-grid-list>
+<div *ngIf="loading, else loadingblock">
+        <app-loading></app-loading>
+</div>
+
+
+<ng-template #loadingblock>
+
+        <p>{{ user[0].name }}</p>
+        <p>{{ user[0].email }}</p>
+        <p>{{ user[0].phone }}</p>
+        <p>{{ user[0].company }}</p>
+        <p>{{ user[0].website }}</p>
+        <p>{{ user[0].address }}</p>
+
+        <ul>
+                <li>
+                        <a [routerLink]="['/profile', user[0].id, 'albums']" class="btn btn-outline-dark">albums</a>
+                </li>
+                <li>
+                        <a [routerLink]="['/profile' , user[0].id, 'posts']" class="btn btn-outline-dark">posts</a>
+                </li>
+                <li>
+                        <a [routerLink]="['/profile' , user[0].id, 'todos']" class="btn btn-outline-dark">TODO's</a>
+                </li>
+        </ul>
+
+</ng-template>

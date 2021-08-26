@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { Post, User } from '../../models/blogModels';
 import { MessageService } from '../../services/message.service';
-import { LoadingComponent } from '../shared/loading/loading.component';
 
 @Component({
   selector: 'app-post',
@@ -12,10 +11,10 @@ import { LoadingComponent } from '../shared/loading/loading.component';
 })
 export class PostComponent implements OnInit {
 
-  user: User = {}
-  post: Post = {}
+  user:     User[] = []
+  post:     Post[] = []
   comments: Comment[] = []
-  loading: boolean
+  loading:  boolean
 
   constructor(private activateRoute: ActivatedRoute,
               private blogService: BlogService,
@@ -37,12 +36,11 @@ export class PostComponent implements OnInit {
 
 
   getPost( postId: number ) {
-    this.blogService.getPost( postId ).subscribe((postData: any) => {
+    this.blogService.getPost( postId ).subscribe((postData: Post) => {
 
       if (typeof postData !== 'undefined') {
-        this.post = postData
-        this.getUser( this.post.userId )
-        this.loading = false
+        this.post.push( postData )
+        this.getUser( this.post[0].userId )
       }
 
     },
@@ -53,10 +51,11 @@ export class PostComponent implements OnInit {
 
 
   getUser( userId: any ) {
-    this.blogService.getUser( userId ).subscribe((userData: any) => {
+    this.blogService.getUser( userId ).subscribe((userData: User) => {
 
       if (typeof userData !== 'undefined') {
-        this.user = userData
+        this.user.push( userData )
+        this.loading = false
       }
 
     },
@@ -66,10 +65,10 @@ export class PostComponent implements OnInit {
 
 
   openComments( postId: any ) {
-    this.blogService.getCommentsFromPost( postId ).subscribe((commentsData: any) => {
+    this.blogService.getCommentsFromPost( postId ).subscribe( (commentsData: Comment[]) => {
 
       if (typeof commentsData !== 'undefined') {
-        this.comments = commentsData
+        this.comments.push(...commentsData)
       }
       
     },

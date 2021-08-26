@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { User } from '../../models/blogModels';
-import { LoadingComponent } from '../shared/loading/loading.component';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +10,7 @@ import { LoadingComponent } from '../shared/loading/loading.component';
 })
 export class ProfileComponent implements OnInit {
 
-  user: User = {}
+  user: User[] = []
   loading: boolean
 
   constructor(private activateRoute: ActivatedRoute,
@@ -21,14 +20,15 @@ export class ProfileComponent implements OnInit {
     this.loading = true
   }
 
+
   ngOnInit(): void {
 
     this.activateRoute.params.subscribe( params => {
 
-      this.blogService.getUser( params['id'] ).subscribe((userData: any) => {
+      this.blogService.getUser( params['id'] ).subscribe( (userData: User) => {
 
         if (typeof userData !== 'undefined') {
-          this.user = userData
+          this.user.push( userData )
           console.log(this.user)
           this.loading = false
         }
@@ -37,5 +37,6 @@ export class ProfileComponent implements OnInit {
       )
     })
   }
+
 
 }

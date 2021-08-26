@@ -30,9 +30,9 @@ export class PostsComponent implements OnInit {
       if (typeof params['id'] == 'undefined') {
         this.getPosts();
       }
-      
+
       else {
-        this.getPostFromUser( params['id'] );
+        this.getPostsFromUser( params['id'] );
       }
     
     })
@@ -40,10 +40,10 @@ export class PostsComponent implements OnInit {
 
 
   getPosts() {
-    this.blogService.getPosts().subscribe( (postsdata: any) => {
+    this.blogService.getPosts().subscribe( (postsData: Post[]) => {
 
-      if( typeof postsdata !== 'undefined' ){
-        this.posts.push(...postsdata)
+      if( typeof postsData !== 'undefined' ){
+        this.posts.push(...postsData)
         this.loading = false
       }
     },
@@ -55,10 +55,10 @@ export class PostsComponent implements OnInit {
   }
 
 
-  getPostFromUser( userId: number ) {
-    this.blogService.getPostsFromUser( userId ).subscribe( (postData: any) =>{
+  getPostsFromUser( userId: number ) {
+    this.blogService.getPostsFromUser( userId ).subscribe( (postsData: Post[]) =>{
 
-      this.posts.push(...postData )
+      this.posts.push(...postsData )
       this.loading = false
 
     },

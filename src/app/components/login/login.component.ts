@@ -28,13 +28,15 @@ export class LoginComponent {
   * Check the login form and if is correct navigate to the home page.
   */
   loginSubmit() {
-    // Process checkout data here
     if ( this.loginData.status === 'INVALID' ) {
       this.messageService.messageError( 'You have to give a proper Email, email or pass must have at least 4 characters.' )
     }
     else {
+      if ( !localStorage.getItem( 'users' )?.length ) {
+        this.messageService.messageError( 'Wrong pass or email, try again!' )
+      }
       this.messageService.messageSuccess( 'login success' )      
-      this.router.navigate( ['/home'] )
+      this.router.navigate( ['/posts'] )
     }
     this.loginData.reset();
   }

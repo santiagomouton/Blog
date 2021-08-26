@@ -31,7 +31,7 @@ export class PhotosComponent implements OnInit {
 
       if (typeof params['id'] !== 'undefined') {
 
-        this.blogService.getPhotosFromAlbum( params[ 'id' ] ).subscribe( (dataPhotos: any) => {
+        this.blogService.getPhotosFromAlbum( params[ 'id' ] ).subscribe( (dataPhotos: Photo[]) => {
 
           this.photos.push(...dataPhotos)
           this.loading = false

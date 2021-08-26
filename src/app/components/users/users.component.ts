@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogService } from '../../services/blog.service';
+import { User } from '../../models/blogModels';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  users: User[] = []
+
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+
+    this.blogService.getUsers().subscribe( (usersData: User[]) => {
+
+      if( typeof usersData !== 'undefined' ){
+      this.users.push(...usersData)
+      }
+    })
+
   }
 
 }

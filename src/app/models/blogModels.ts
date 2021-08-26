@@ -1,19 +1,19 @@
 export interface Post {
-    userId?: number;
-    id?:     number;
-    title?:  string;
-    body?:   string;
+    userId: number;
+    id:     number;
+    title:  string;
+    body:   string;
 }
 
 export interface User {
-    id?:       number;
-    name?:     string;
-    username?: string;
-    email?:    string;
-    address?:  Address;
-    phone?:    string;
-    website?:  string;
-    company?:  Company;
+    id:       number;
+    name:     string;
+    username: string;
+    email:    string;
+    address:  Address;
+    phone:    string;
+    website:  string;
+    company:  Company;
 }
 
 export interface Address {
