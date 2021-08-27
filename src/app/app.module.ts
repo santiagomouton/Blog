@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 
 /* Angular Material */
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Angular Flex Layout */
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -50,7 +50,7 @@ import { TodosComponent } from './components/todos/todos.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    //BrowserAnimationsModule,
     FlexLayoutModule,
     AppRoutingModule,
   ],
