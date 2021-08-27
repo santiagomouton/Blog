@@ -12,16 +12,18 @@ import { StorageService } from '../../services/storage.service';
 export class AlbumsComponent implements OnInit {
 
   albums:    Album[] = []
+  userId:    number
   myProfile: boolean
   loading:   boolean
 
   constructor(private activateRoute: ActivatedRoute,
               private blogService: BlogService,
-              private storageService: StorageService
+              public storageService: StorageService
               ) {
 
     this.loading   = true
     this.myProfile = false
+    this.userId    = 0
   }
 
 
@@ -34,7 +36,8 @@ export class AlbumsComponent implements OnInit {
       }
       
       else {
-        this.getAlbumsFromUser( params['id'] );
+        this.userId = params['id']
+        this.getAlbumsFromUser( this.userId );
       }
 
     })
@@ -63,19 +66,20 @@ export class AlbumsComponent implements OnInit {
     if( this.storageService.getSessionId() == userId ){
       this.albums = this.storageService.userAlbumsStorage( userId )
       this.myProfile = true
-      return
+      this.loading   = false
     }
-
-    this.blogService.getAlbumsFromUser( userId ).subscribe( (albumsData: Album[]) =>{
+    else {
+      this.blogService.getAlbumsFromUser( userId ).subscribe( (albumsData: Album[]) =>{
+        
+        this.albums.push(...albumsData )
+        this.loading = false
       
-      this.albums.push(...albumsData )
-      this.loading = false
-    
-    }, 
-      ( errorServicio ) => {
-        console.log(errorServicio);
-      }
-    )
+      }, 
+        ( errorServicio ) => {
+          console.log(errorServicio);
+        }
+      )
+    }
   }
 
 

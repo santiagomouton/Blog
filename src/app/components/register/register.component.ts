@@ -18,7 +18,7 @@ export class RegisterComponent {
     name: new FormControl('', {validators: [Validators.required, Validators.minLength(4)]}),
     city: new FormControl('', {validators: [Validators.required, Validators.minLength(4)]}),
     street: new FormControl('', {validators: [Validators.required, Validators.minLength(4)]}),
-    phone: new FormControl('', {validators: [Validators.required, Validators.minLength(10), Validators.max(13)]}),
+    phone: new FormControl('', {validators: [Validators.required, Validators.minLength(10)]}),
     website: new FormControl('', {validators: [Validators.required, Validators.minLength(4)]}),
     company: new FormControl('', {validators: [Validators.required, Validators.minLength(4)]})
   });

@@ -8,6 +8,7 @@ import { UserAndPass, Album } from '../models/blogModels';
 export class StorageService {
 
   private usersAndPasswords: UserAndPass[] = []
+  private storageAlbums: Album[] = []
 
   constructor() { }
 
@@ -120,15 +121,21 @@ export class StorageService {
   }
 
 
-  getAlbumsInStorage(): Album[] {
+  private getAlbumsFromStorage(): Album[] {
     return JSON.parse(localStorage.getItem( 'albums' ) || '[]')
   }
 
 
+  private setAlbumsInStorage(  ) {
+    localStorage.setItem( 'albums', JSON.stringify( this.storageAlbums ) )
+  }
+
+
   userAlbumsStorage( userId: number ) {
-    
+
+    this.storageAlbums = this.getAlbumsFromStorage()
     let userAlbums: Album[] = []
-    for( let album of this.getAlbumsInStorage() ){
+    for( let album of this.storageAlbums ){
 
       if( album.userId == userId ){
         userAlbums.push( album )
@@ -136,6 +143,25 @@ export class StorageService {
     }
     return userAlbums
   }
+
+
+  addNewAlbum( albumTitle: string, userId: number ) {
+    
+    this.storageAlbums.push( {userId: userId, id: this.getNewAlbumId(), title: albumTitle} )
+    this.setAlbumsInStorage()
+  }
+
+
+  private getNewAlbumId(): number {
+    let size = this.storageAlbums.length
+    if( size == 0 ){
+      return 101
+    }
+    else {
+      return ( this.storageAlbums[ size - 1 ].id ) + 1
+    }
+  }
+
 
 
 }
