@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { User } from '../../models/blogModels';
+import { AvatarService } from '../../services/avatar.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,14 +12,18 @@ import { User } from '../../models/blogModels';
 })
 export class ProfileComponent implements OnInit {
 
-  user: User[] = []
+  user: any[] = []
+  myProfile: boolean
   loading: boolean
 
   constructor(private activateRoute: ActivatedRoute,
-              private blogService: BlogService
+              private blogService: BlogService,
+              private storageService: StorageService,
+              public avatarService: AvatarService
               ) {
 
-    this.loading = true
+    this.loading   = true
+    this.myProfile = false
   }
 
 
@@ -25,16 +31,23 @@ export class ProfileComponent implements OnInit {
 
     this.activateRoute.params.subscribe( params => {
 
-      this.blogService.getUser( params['id'] ).subscribe( (userData: User) => {
+      if( params['id'] == this.storageService.getSessionId() ) {
+        this.user.push( this.storageService.getUserFromStorage( params['id'] ) )
+        this.loading   = false
+        this.myProfile = true
+      }
+      else {
+        this.blogService.getUser( params['id'] ).subscribe( (userData: User) => {
 
-        if (typeof userData !== 'undefined') {
-          this.user.push( userData )
-          console.log(this.user)
-          this.loading = false
-        }
+          if (typeof userData !== 'undefined') {
+            this.user.push( userData )
+            console.log(this.user)
+            this.loading = false
+          }
 
-        }
-      )
+          }
+        )
+      }
     })
   }
 

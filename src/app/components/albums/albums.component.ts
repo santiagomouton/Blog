@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { Album } from '../../models/blogModels';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-albums',
@@ -10,14 +11,17 @@ import { Album } from '../../models/blogModels';
 })
 export class AlbumsComponent implements OnInit {
 
-  albums: Album[] = []
-  loading: boolean
+  albums:    Album[] = []
+  myProfile: boolean
+  loading:   boolean
 
   constructor(private activateRoute: ActivatedRoute,
-              private blogService: BlogService
+              private blogService: BlogService,
+              private storageService: StorageService
               ) {
 
-    this.loading = true
+    this.loading   = true
+    this.myProfile = false
   }
 
 
@@ -55,6 +59,13 @@ export class AlbumsComponent implements OnInit {
 
 
   getAlbumsFromUser( userId: number ) {
+
+    if( this.storageService.getSessionId() == userId ){
+      this.albums = this.storageService.userAlbumsStorage( userId )
+      this.myProfile = true
+      return
+    }
+
     this.blogService.getAlbumsFromUser( userId ).subscribe( (albumsData: Album[]) =>{
       
       this.albums.push(...albumsData )

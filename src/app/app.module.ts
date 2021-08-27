@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { NgModule } from '@angular/core';
 
 /* FormsModule */
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,11 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 /* Angular Material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 
 /* Angular Flex Layout */
 import { FlexLayoutModule } from '@angular/flex-layout';
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* Components */
 import { LoginComponent } from './components/login/login.component';
@@ -54,7 +53,6 @@ import { TodosComponent } from './components/todos/todos.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     AppRoutingModule,
-    //NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],

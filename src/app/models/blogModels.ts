@@ -1,3 +1,8 @@
+export interface UserAndPass {
+    user:     User;
+    password: string;
+}
+
 export interface Post {
     userId: number;
     id:     number;

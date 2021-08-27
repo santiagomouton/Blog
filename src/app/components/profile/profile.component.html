@@ -5,6 +5,7 @@
 
 <ng-template #loadingblock>
 
+        <img [src]="avatarService.getAvatar( user[0].id )" alt="user[0].id" width="32" height="32">
         <p>{{ user[0].name }}</p>
         <p>{{ user[0].email }}</p>
         <p>{{ user[0].phone }}</p>

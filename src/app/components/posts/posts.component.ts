@@ -3,7 +3,7 @@ import { BlogService } from '../../services/blog.service';
 import { Post } from '../../models/blogModels';
 import { MessageService } from '../../services/message.service';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingComponent } from '../shared/loading/loading.component';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-posts',
@@ -12,11 +12,16 @@ import { LoadingComponent } from '../shared/loading/loading.component';
 })
 export class PostsComponent implements OnInit {
 
+  search = this.searchForm.group({
+    search: new FormControl('', {validators: [Validators.required]})
+  });
+
   posts: Post[] = []
   loading: boolean
 
   constructor(private blogService: BlogService,
-              private activateRoute: ActivatedRoute
+              private activateRoute: ActivatedRoute,
+              private searchForm:   FormBuilder  
               ) {
     
     this.loading = true            
@@ -67,6 +72,17 @@ export class PostsComponent implements OnInit {
         console.log(errorServicio);
       }
     )
+  }
+
+
+  searchPost() {
+    if ( this.search.status !== 'INVALID' ) {
+      this.posts = []
+      //this.getPostsFromUser.
+    }
+    else{
+      //this.search.reset()
+    }
   }
 
   

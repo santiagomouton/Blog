@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { Post, User } from '../../models/blogModels';
 import { MessageService } from '../../services/message.service';
+import { AvatarService } from '../../services/avatar.service';
 
 @Component({
   selector: 'app-post',
@@ -18,7 +19,7 @@ export class PostComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
               private blogService: BlogService,
-              private messageService: MessageService
+              public  avatarService: AvatarService
               ) {
     
     this.loading = true

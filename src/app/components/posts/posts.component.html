@@ -1,12 +1,24 @@
-<br><br>
+<form [formGroup]="search" (ngSubmit)="searchPost(  )" style="margin-bottom: 25px;">
+  <div class="d-flex justify-content-between">
+    <div class="d-flex">
+      <div class="p-2">
+        <input class="form-control me-2 " type="search" placeholder="Search by title or user" aria-label="Search" formControlName="search">
+      </div>
+      <div class="p-2">
+        <button class="btn btn-outline-dark fourth" type="submit">Search</button>
+      </div>
+    </div>
+  </div>
+</form>
+
 
 <div class="animated fadeIn" *ngIf="!loading; else elseblock">
 
   <div class="row row-cols-1 row-cols-md-3 g-4"> 
-      <div *ngFor="let post of posts" class="col-sm-4">
+      <div *ngFor="let post of posts, let i=index" class="col-sm-4">
         <div class="card border-info mb-4" style="max-width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
+            <h5 class="card-title"> Post #{{ i+1 }} </h5>
             <p class="card-text"> {{ post.title }} </p>
             <a [routerLink]="['/post', post.id]" class="btn btn-outline-primary">Read more</a>
           </div>

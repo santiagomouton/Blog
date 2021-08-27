@@ -11,7 +11,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
+  myProfileUrl(){
+    return ( 'profile/' + sessionStorage.getItem('session') )
+  }
 
 
 }

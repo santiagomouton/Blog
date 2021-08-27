@@ -9,23 +9,24 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { TodosComponent } from './components/todos/todos.component';
 import { UsersComponent } from './components/users/users.component';
+import { AccessProtectGuard } from './access-protect.guard';
 
 
 export const ROUTES: Routes = [
     { path: 'login'              ,  component: LoginComponent},
     { path: 'register'           ,  component: RegisterComponent},
-    { path: 'posts'              ,  component: PostsComponent},
-    { path: 'profile/:id/posts'  ,  component: PostsComponent},
-    { path: 'post/:id'           ,  component: PostComponent},
-    { path: 'profile/:id'        ,  component: ProfileComponent},
-    { path: 'users'              ,  component: UsersComponent},
-    { path: 'profile/:id/albums' ,  component: AlbumsComponent},
-    { path: 'albums'             ,  component: AlbumsComponent},
-    { path: 'albums/:id/photos'  ,  component: PhotosComponent},
-    { path: 'todos'              ,  component: TodosComponent},
-    { path: 'profile/:id/todos'  ,  component: TodosComponent},
-    { path: '',   pathMatch: 'full', redirectTo: 'posts'},
-    { path: '**', pathMatch: 'full', redirectTo: 'posts'}
+    { path: 'posts'              ,  component: PostsComponent,  canActivate: [AccessProtectGuard]},
+    { path: 'profile/:id/posts'  ,  component: PostsComponent,  canActivate: [AccessProtectGuard]},
+    { path: 'post/:id'           ,  component: PostComponent,   canActivate: [AccessProtectGuard]},
+    { path: 'profile/:id'        ,  component: ProfileComponent,canActivate: [AccessProtectGuard]},
+    { path: 'users'              ,  component: UsersComponent,  canActivate: [AccessProtectGuard]},
+    { path: 'profile/:id/albums' ,  component: AlbumsComponent, canActivate: [AccessProtectGuard]},
+    { path: 'albums'             ,  component: AlbumsComponent, canActivate: [AccessProtectGuard]},
+    { path: 'albums/:id/photos'  ,  component: PhotosComponent, canActivate: [AccessProtectGuard]},
+    { path: 'todos'              ,  component: TodosComponent,  canActivate: [AccessProtectGuard]},
+    { path: 'profile/:id/todos'  ,  component: TodosComponent,  canActivate: [AccessProtectGuard]},
+    { path: '',   pathMatch: 'full', redirectTo: 'login'},
+    { path: '**', pathMatch: 'full', redirectTo: 'login'}
 ];
 
 @NgModule({
