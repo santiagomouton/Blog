@@ -15,11 +15,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <input #albumTitle (submit)="storageService.addNewAlbum(albumTitle.value, userId)" type="text" class="form-control" placeholder="Enter Album name">
+            <input #albumTitle (submit)="storageService.addNewAlbum(albumTitle.value, userId)" type="text" class="form-control" placeholder="Album title">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Accept</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Accept</button>
           </div>
         </div>
       </div>

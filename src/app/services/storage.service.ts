@@ -1,21 +1,65 @@
 import { Injectable, ɵRuntimeError } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { UserAndPass, Album } from '../models/blogModels';
+import { UserAndPass, Album, Post } from '../models/blogModels';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
+  readonly defaultIdUser  = 11
+  readonly defaultIdAlbum = 101
+  readonly defaultIdPost  = 101
+
   private usersAndPasswords: UserAndPass[] = []
   private storageAlbums: Album[] = []
+  private storagePosts: Post[] =[]
 
-  constructor() { }
+  constructor() {
+
+    this.usersAndPasswords = this.getAllUsersFromStorage()
+    this.storageAlbums     = this.getAlbumsFromStorage()
+    //this.storagePosts      = 
+  }
+
+
+  /**
+   * This method is common for all methods that creates news ids
+   * @param storageElement array of any element that correspond to localStorage
+   * @param defaultId      default id
+   * @returns new id
+   */
+  private newId( storageElement: any, defaultId: number ): number {
+    let size = storageElement.length
+    if( size == 0 ){
+      return defaultId
+    }
+    else {
+      return ( storageElement[ size - 1 ].user.id ) + 1
+    }
+  }
+
+
+  /**
+   * This method is common for methods that returns user posts, albums, TODOs 
+   * @param storageElement array of any element that correspond to localStorage
+   * @param userId         id of user
+   * @returns posts || albums || TODOs
+   */
+  private userElementsStorage( storageElement: any, userId: number ) {
+    let userElement: any[] = []
+    for( let element of storageElement ){
+
+      if( element.userId == userId ){
+        userElement.push( element )
+      }
+    }
+    return userElement
+  }
 
 
   login( email: string, password: string ): boolean {
 
-    this.usersAndPasswords = this.getAllUsersFromStorage()
     if ( this.usersAndPasswords.length == 0 ) {
       return false
     }
@@ -34,8 +78,7 @@ export class StorageService {
 
   register( form: FormGroup ): boolean {
 
-    this.usersAndPasswords = this.getAllUsersFromStorage()
-    let newUserAndPass     = this.newUserAndPass( form )
+    let newUserAndPass = this.newUserAndPass( form )
 
     if( this.isDuplicate( newUserAndPass ) ){
         return false
@@ -48,7 +91,7 @@ export class StorageService {
   }
 
 
-  private getAllUsersFromStorage(): UserAndPass[] {
+  getAllUsersFromStorage(): UserAndPass[] {
     return JSON.parse(localStorage.getItem( 'users' ) || '[]')
   }
 
@@ -106,13 +149,7 @@ export class StorageService {
 
 
   private getNewUserId(): number {
-    let size = this.usersAndPasswords.length
-    if( size == 0 ){
-      return 11
-    }
-    else {
-      return ( this.usersAndPasswords[ size - 1 ].user.id ) + 1
-    }
+    return this.newId( this.usersAndPasswords, this.defaultIdUser)
   }
 
 
@@ -131,17 +168,8 @@ export class StorageService {
   }
 
 
-  userAlbumsStorage( userId: number ) {
-
-    this.storageAlbums = this.getAlbumsFromStorage()
-    let userAlbums: Album[] = []
-    for( let album of this.storageAlbums ){
-
-      if( album.userId == userId ){
-        userAlbums.push( album )
-      }
-    }
-    return userAlbums
+  userAlbumsStorage( userId: number ): Album[] {
+    return this.userElementsStorage( this.storageAlbums, userId )
   }
 
 
@@ -153,15 +181,23 @@ export class StorageService {
 
 
   private getNewAlbumId(): number {
-    let size = this.storageAlbums.length
-    if( size == 0 ){
-      return 101
-    }
-    else {
-      return ( this.storageAlbums[ size - 1 ].id ) + 1
-    }
+    return this.newId( this.storageAlbums, this.defaultIdAlbum )
   }
 
+
+  userPostsStorage( userId: number ): Post[] {
+    return this.userElementsStorage( this.storagePosts, userId )
+  }
+
+
+  addNewPost( userId: number, title: string, body: string ) {
+    this.storagePosts.push( {userId: userId, id: this.getNewPostId(), title: title, body: body } )
+  }
+
+
+  getNewPostId(): number {
+    return this.newId( this.storagePosts, this.defaultIdPost )
+  }
 
 
 }
