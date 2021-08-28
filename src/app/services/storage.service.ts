@@ -176,6 +176,7 @@ export class StorageService {
   addNewAlbum( albumTitle: string, userId: number ) {
     
     this.storageAlbums.push( {userId: userId, id: this.getNewAlbumId(), title: albumTitle} )
+    console.log(this.getAlbumsFromStorage());
     this.setAlbumsInStorage()
   }
 

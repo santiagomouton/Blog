@@ -1,34 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-/* Para que sobre un espacio abajo de la pagina*/
-/* body{
-  padding-bottom: 50px;
-} */
-
-/* Para dejar un espacio entre el texto del cuerpo y la parte superior */
-
-/*.bck {
-  background-image: url("assets/img/fonsoImg/22.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}*/
-
 .main-container{
     margin-top: 20px;
 }
 
-/* Arreglo de tamanio de logos */
+
 .img-logo{
     width: 120px;
 }
 
 
-/* Animaciones */
+/* 
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -56,3 +42,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .fadeIn {
     animation-name: fadeIn;
 }
+ */
