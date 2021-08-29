@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageService } from 'src/app/services/message.service';
+
+import { MessageService } from '../../services/message.service';
 import { StorageService } from '../../services/storage.service';
 
 @Component({

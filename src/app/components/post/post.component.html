@@ -1,14 +1,14 @@
-<div class="animated fadeIn container" *ngIf="loading; else elseloading">
+<div class="animated fadeIn container" *ngIf="loading; else loadingBlock">
 
     <app-loading class="text-center"></app-loading>
 
 </div>
 
-<ng-template #elseloading>
+<ng-template #loadingBlock>
     <a [routerLink]="['/profile', post[0].userId]" >
 
         <h1 class="animated fadeIn fast">
-            <img [src]="avatarService.getAvatar( user[0].id )" alt="user[0].id" width="32" height="32">
+            <img [src]="avatarService.getAvatar( user[0].id )" alt="user[0].id" width="50" height="50">
             {{ user[0].username }}
         </h1>
     </a>
@@ -23,7 +23,18 @@
                 {{ post[0].body }}
             </p>
             <hr>
-            <button (click)="openComments(post[0].id)" class="btn btn-outline-primary">Comments</button>
+            <button (click)="openComments(post[0].id) ; " class="btn btn-outline-primary">Comments</button>
+            <br><br>
+            <div *ngIf="comments.length != 0">
+                <ul *ngFor="let comment of comments">
+                    <strong>{{ comment.email }} </strong>
+                    <p>{{ comment.name }} <br>
+                    {{ comment.body }}</p>
+                    <hr>    
+                </ul>
+            </div>
+
         </div>
     </div>
+
 </ng-template>

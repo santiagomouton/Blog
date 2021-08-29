@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+
 import { BlogService } from '../../services/blog.service';
 import { Post } from '../../models/blogModels';
 import { MessageService } from '../../services/message.service';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class PostsComponent implements OnInit {
   constructor(private blogService: BlogService,
               private activateRoute: ActivatedRoute,
               public storageService: StorageService,
+              private messageService: MessageService
               ) {
     
     this.loading   = true   
@@ -115,6 +117,10 @@ export class PostsComponent implements OnInit {
     if( this.postForm.status !== 'INVALID' ) {
       this.storageService.addNewPost( this.userId, this.postForm.value.title, this.postForm.value.body )
     }
+    else {
+      this.messageService.messageError( 'Title or text invalid' )
+    }
+    this.postForm.reset()
   }
 
   

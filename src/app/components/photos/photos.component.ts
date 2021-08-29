@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Photo } from '../../models/blogModels';
 import { ActivatedRoute } from '@angular/router';
+
 import { BlogService } from '../../services/blog.service';
+import { Photo } from '../../models/blogModels';
 
 @Component({
   selector: 'app-photos',

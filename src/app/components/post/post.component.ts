@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../services/blog.service';
-import { Post, User } from '../../models/blogModels';
+import { Post, User, Comment } from '../../models/blogModels';
 import { MessageService } from '../../services/message.service';
 import { AvatarService } from '../../services/avatar.service';
 
@@ -66,6 +66,7 @@ export class PostComponent implements OnInit {
 
 
   openComments( postId: any ) {
+    this.comments = []
     this.blogService.getCommentsFromPost( postId ).subscribe( (commentsData: Comment[]) => {
 
       if (typeof commentsData !== 'undefined') {

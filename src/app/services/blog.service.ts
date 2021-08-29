@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User, Post, Album, Photo, Todo } from '../models/blogModels';
+
+import { User, Post, Comment, Album, Photo, Todo } from '../models/blogModels';
 
 @Injectable({
   providedIn: 'root'

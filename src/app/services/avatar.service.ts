@@ -10,7 +10,7 @@ export class AvatarService {
 
   getAvatar( userId: number ): string {
 
-    const url = `https://avatars.dicebear.com/api/human/${ userId }.svg`;
+    const url = `https://avatars.dicebear.com/api/avataaars/${ userId }.svg`;
 
     return url;
   }

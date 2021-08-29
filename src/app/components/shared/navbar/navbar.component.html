@@ -1,30 +1,30 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Blog</a>
+      <a class="navbar-brand" routerLink="posts">Blog</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav m-auto">
           <li class="nav-item">
-            <a [routerLink]="['/posts']" class="nav-link" aria-current="page" href="#">Posts</a>
+            <a routerLinkActive="active" routerLink="posts" class="nav-link" aria-current="page">Posts</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/albums']" class="nav-link" href="#">Albums</a>
+            <a routerLinkActive="active" routerLink="albums" class="nav-link">Albums</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/todos']" class="nav-link" href="#">TODOs</a>
+            <a routerLinkActive="active" routerLink="todos" class="nav-link">TODOs</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/users']" class="nav-link" href="#">Users</a>
+            <a routerLinkActive="active" routerLink="users" class="nav-link">Users</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" routerLink="{{ myProfileUrl() }}" >My Account</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" >Settings</a></li>
               <li><a class="dropdown-item" [routerLink]="['/login']">Sign Out</a></li>
             </ul>
           </li>
