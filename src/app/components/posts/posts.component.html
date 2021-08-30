@@ -12,7 +12,7 @@
 
       <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      New post
+      New post <i class="fas fa-plus"></i>
     </button>
     
       <!-- Modal -->
@@ -59,8 +59,12 @@
                 <span *ngIf="post.body.length>=33 ">...</span>
               </p>
               <div class="text-center">
-                <a [routerLink]="['/post', post.id]" class="mx-1 btn btn-outline-primary radius-15">Read more</a>
-                <a [hidden]="!myProfile" (click)="delPost(post.id)" class="mx-1 btn btn-outline-danger radius-15">delete</a>
+                <a [routerLink]="['/post', post.id]" class="mx-1 btn btn-outline-primary radius-15">
+                  <i class="fas fa-angle-double-right"></i>
+                </a>
+                <a [hidden]="!myProfile" (click)="delPost(post.id)" class="mx-1 btn btn-outline-danger radius-15">
+                  <i class="fas fa-trash"></i>
+                </a>
               </div>
             </div>
           </div>

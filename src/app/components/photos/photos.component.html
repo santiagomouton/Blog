@@ -17,8 +17,12 @@
                     {{ photos[indexPhoto].title }}
                 </span>
             </div>
-            <button class="btn btn-outline-primary" (click)= "viewPhoto = false" >back</button>
-            <button [hidden]="!myProfile" class="btn btn-outline-danger" (click)= "viewPhoto = false" >delete</button>
+            <button class="btn btn-outline-primary" (click)= "viewPhoto = false" >
+                <i class="fas fa-backward"></i>
+            </button>
+            <button [hidden]="!myProfile" class="btn btn-outline-danger" (click)= "viewPhoto = false" >
+                <i class="fas fa-trash"></i>
+            </button>
         </div>
     </div>
 

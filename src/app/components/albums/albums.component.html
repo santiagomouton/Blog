@@ -12,7 +12,7 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary radius-15" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Add new Album
+      New Album <i class="fas fa-plus"></i>
     </button>
     <br>
     <!-- Modal -->
@@ -48,9 +48,11 @@
               <div class="text-center">
                 <div class="btn-group" role="group">
                   <button [routerLink]="['/albums', album.id, 'photos']" type="button" class="btn btn-outline-primary">View photos</button>
-                  <button [routerLink]="['/profile', album.userId]" type="button" class="btn btn-outline-secondary">profile</button>
+                  <button [routerLink]="['/profile', album.userId]" type="button" class="btn btn-outline-secondary">
+                    <i class="fas fa-user"></i>
+                  </button>
                   <button [hidden]="!myProfile" (click)="delAlbum(album.id)" type="button" class="btn btn-outline-danger">
-                    delete
+                    <i class="fas fa-trash"></i>
                   </button>
                 </div>
               </div>
