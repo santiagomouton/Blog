@@ -1,5 +1,5 @@
 <div *ngIf="loading; else loadingBlock" >
-    <app-loading></app-loading>
+    <app-loading class="text-center"></app-loading>
 </div>
 
 <ng-template #loadingBlock>
@@ -12,15 +12,14 @@
             </div>
         </div>
         <div class="row">
-        <button class="btn btn-outline-primary" (click)= "viewPhoto = false" >back</button>
-        <button [hidden]="!myProfile" class="btn btn-outline-danger" (click)= "viewPhoto = false" >delete</button>
             <div class="col-md-12 caption-row">
                 <span id = "caption">
                     {{ photos[indexPhoto].title }}
                 </span>
             </div>
+            <button class="btn btn-outline-primary" (click)= "viewPhoto = false" >back</button>
+            <button [hidden]="!myProfile" class="btn btn-outline-danger" (click)= "viewPhoto = false" >delete</button>
         </div>
-
     </div>
 
     <ng-template #elseblock>

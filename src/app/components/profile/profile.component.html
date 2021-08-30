@@ -7,7 +7,7 @@
 
 <ng-template #loadingblock>
 
-    <div class="container mt-5">
+    <!-- <div class="container mt-5"> -->
         <div class="row">
               <div class="col-xs-12 col-sm-9">
                 
@@ -57,14 +57,18 @@
                 <!-- Community -->
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                  <h4 class="panel-title">Community</h4>
+                  <h4 class="panel-title">Community</h4><br>
                   </div>
                   <div class="panel-body">
-
-                    <a class="btn btn-outline-primary" [routerLink]="['/profile' , user[0].id, 'todos']">TODOs</a><br>
-                    <a class="btn btn-outline-primary" [routerLink]="['/profile' , user[0].id, 'posts']">posts</a><br>
-                    <a class="btn btn-outline-primary" [routerLink]="['/profile', user[0].id, 'albums']">albums</a>
-
+                        <a class="mx-1 btn btn-outline-primary btn-lg" [routerLink]="['/profile' , user[0].id, 'posts']">
+                            <i class="fas fa-bullhorn fa-5x"></i>
+                        </a>
+                        <a class="mx-1 btn btn-outline-primary btn-lg" [routerLink]="['/profile', user[0].id, 'albums']">
+                            <i class="fas fa-images fa-5x"></i>
+                        </a>
+                        <a class="mx-1 btn btn-outline-primary btn-lg" [routerLink]="['/profile' , user[0].id, 'todos']">
+                            <i class="far fa-list-alt fa-5x"></i>
+                        </a>
                   </div>
                 </div>
                             
@@ -107,7 +111,7 @@
                             
               </div>
             </div>
-        </div>
+        <!-- </div> -->
 
 </ng-template>
 

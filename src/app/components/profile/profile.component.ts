@@ -33,8 +33,7 @@ export class ProfileComponent implements OnInit {
     this.activateRoute.params.subscribe( params => {
 
       if( params['id'] == this.storageService.getSessionId() ) {
-        this.user = this.storageService.getUserFromStorage( params['id'] ) 
-        console.log(this.user);
+        this.user = this.storageService.getUserFromStorage( params['id'] )
         this.loading   = false
         this.myProfile = true
       }
