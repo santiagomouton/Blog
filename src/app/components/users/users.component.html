@@ -1,75 +1,35 @@
-<ul>
-    <li *ngFor="let user of users">
-        <a [routerLink]="['/profile', user.id]" class="btn btn-outline-success"> Usuario id: #{{ user.id }} </a>
-    </li>
-</ul>
 
-
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4"><a href="#custom-modal" class="btn btn-custom waves-effect waves-light mb-4" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="mdi mdi-plus"></i> Add Member</a></div>
-            <!-- end col -->
-        </div>
-        <!-- end row -->
-        <div class="row">
-            <div class="cards-columns">
-            <div class="col-lg-4 card-group">
-                <div class="text-center card-box">
-                    <div class="member-card pt-2 pb-2">
-                        <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                        <div class="">
-                            <h4>Freddie J. Plourde</h4>
-                            <p class="text-muted">@Founder <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span></p>
-                        </div>
-                        <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 card-group">
-                <div class="text-center card-box">
-                    <div class="member-card pt-2 pb-2">
-                        <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                        <div class="">
-                            <h4>Freddie J. Plourde</h4>
-                            <p class="text-muted">@Founder <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span></p>
-                        </div>
-                        <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 card-group">
-                <div class="text-center card-box">
-                    <div class="member-card pt-2 pb-2">
-                        <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                        <div class="">
-                            <h4>Freddie J. Plourde</h4>
-                            <p class="text-muted">@Founder <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span></p>
-                        </div>
-                        <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 card-group">
-                <div class="text-center card-box">
-                    <div class="member-card pt-2 pb-2">
-                        <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                        <div class="">
-                            <h4>Freddie J. Plourde</h4>
-                            <p class="text-muted">@Founder <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span></p>
-                        </div>
-                        <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                    </div>
-                </div>
-            </div>
-
-            </div>
-        </div>
-
-
-    </div>
-    <!-- container -->
+<div *ngIf="loading, else loadingblock">
+    <app-loading class="text-center"></app-loading>
 </div>
+
+
+<ng-template #loadingblock>
+
+	<div class="container mt-5">
+	<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
+		<div  *ngFor="let user of users" class="col">
+			<div class="card radius-15">
+				<div class="card-body text-center">
+					<div class="p-4 border radius-15">
+
+						<img [src]="avatarService.getAvatar( user.id )" width="110" height="110" 
+						class="rounded-circle shadow" [alt]="user.id">
+
+						<h5 class="mb-0 mt-5">{{ user.username }}</h5>
+						
+						<p class="mb-3">{{ user.email | slice:0:15 }}
+							<span *ngIf="user.email.length >= 15">...</span>
+						</p>
+						
+						<div class="d-grid"> 
+							<a [routerLink]="['/profile', user.id]" class="btn btn-outline-primary radius-15">Profile</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</ng-template>

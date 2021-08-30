@@ -13,7 +13,6 @@ import { StorageService } from '../../services/storage.service';
 export class AlbumsComponent implements OnInit {
 
   albums:    Album[] = []
-  userId:    number
   myProfile: boolean
   loading:   boolean
 
@@ -24,7 +23,6 @@ export class AlbumsComponent implements OnInit {
 
     this.loading   = true
     this.myProfile = false
-    this.userId    = 0
   }
 
 
@@ -37,8 +35,7 @@ export class AlbumsComponent implements OnInit {
       }
       
       else {
-        this.userId = params['id']
-        this.getAlbumsFromUser( this.userId );
+        this.getAlbumsFromUser( params['id'] );
       }
 
     })

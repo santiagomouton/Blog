@@ -1,12 +1,12 @@
-<div *ngIf="!loading; else loadingBlock">
+<div class="container">
 
-  <div *ngIf="myProfile">
+  <div *ngIf="!loading; else loadingBlock">
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button type="button" class="btn btn-outline-primary radius-15" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       Add new Album
     </button>
-
+    <br>
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -14,38 +14,41 @@
           <div class="modal-header">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <form id="albumForm" (submit)="storageService.addNewAlbum(albumTitle.value, userId)">
+        <div class="modal-body">
+            <form id="albumForm" (submit)="storageService.addNewAlbum( albumTitle.value, this.storageService.getSessionId() )">
               <input #albumTitle type="text" placeholder="Album title" class="form-control" type="form-control" >
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" form="albumForm" class="btn btn-success" data-bs-dismiss="modal">Accept</button>
+            <button type="button" class="btn btn-secondary radius-15" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" form="albumForm" class="btn btn-success radius-15" data-bs-dismiss="modal">Accept</button>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
+    <br>
 
-  <br>
-
-  <div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
-      <div *ngFor="let album of albums; let i=index" class="col-sm-4">
-        <div class="card border-info mb-4" style="max-width: 18rem;">
-          <div class="card-body">
-            <a href=""></a>
-            <h5 class="card-title text-center">{{ album.title }}</h5>
-            <p class="card-text"> </p>
-            <hr>
-            <div class="text-center">
-              <a [routerLink]="['/albums', album.id, 'photos']" class="mx-1 btn btn-outline-success">View photos</a>
-              <a [routerLink]="['/profile', album.userId]" class="mx-1 btn btn-outline-primary">profile</a>
+    <div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
+        <div *ngFor="let album of albums; let i=index" class="col-sm-4">
+          <div class="card border-info mb-4" style="max-width: 18rem;">
+            <div class="card-body">
+              <a href=""></a>
+              <h5 class="card-title text-center">{{ album.title }}</h5>
+              <p class="card-text"> </p>
+              <hr>
+              <div class="text-center">
+                <div class="btn-group" role="group">
+                  <button [routerLink]="['/albums', album.id, 'photos']" type="button" class="btn btn-outline-primary">View photos</button>
+                  <button [routerLink]="['/profile', album.userId]" type="button" class="btn btn-outline-secondary">profile</button>
+                  <button [hidden]="!myProfile" type="button" class="btn btn-outline-danger">delete</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+    </div>
+
   </div>
 
 </div>

@@ -14,10 +14,6 @@ import { StorageService } from '../../services/storage.service';
 })
 export class PostsComponent implements OnInit {
 
-  search = new FormBuilder().group({
-    search: new FormControl('', {validators: [Validators.required]})
-  });
-
   postForm = new FormBuilder().group({
     title: new FormControl('', {validators: [Validators.required, Validators.minLength(1)]}),
     body: new FormControl('', {validators: [Validators.required, Validators.minLength(5)]})
@@ -26,7 +22,6 @@ export class PostsComponent implements OnInit {
   posts: Post[] = []
   filterPosts: Post[]
   myProfile: boolean
-  userId: number
   loading: boolean
 
   constructor(private blogService: BlogService,
@@ -37,8 +32,7 @@ export class PostsComponent implements OnInit {
     
     this.filterPosts = this.posts
     this.loading   = true   
-    this.myProfile = false
-    this.userId = -1         
+    this.myProfile = false    
   }
 
 
@@ -82,7 +76,6 @@ export class PostsComponent implements OnInit {
       this.posts.push( ...this.storageService.userPostsStorage( userId ) )
       this.myProfile = true
       this.loading   = false
-      this.userId = userId 
 
     } else{
     /* If not, look for user posts in the api */
@@ -109,7 +102,7 @@ export class PostsComponent implements OnInit {
 
   postSubmit() {
     if( this.postForm.status !== 'INVALID' ) {
-      this.storageService.addNewPost( this.userId, this.postForm.value.title, this.postForm.value.body )
+      this.storageService.addNewPost( this.storageService.getSessionId(), this.postForm.value.title, this.postForm.value.body )
     }
     else {
       this.messageService.messageError( 'Title or text invalid' )

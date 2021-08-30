@@ -20,11 +20,14 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile
+              Account
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" routerLink="{{ myProfileUrl() }}" >My Account</a></li>
-              <li><a class="dropdown-item" >Settings</a></li>
+              <li><a class="dropdown-item" routerLink="{{ myProfileUrl() }}" >My profile</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/profile',storageService.getSessionId(),'albums']">My albums</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/profile',storageService.getSessionId(),'posts']">My posts</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/profile',storageService.getSessionId(),'todos']">My TODOs</a></li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" (click)="storageService.signOut()" [routerLink]="['/login']">Sign Out</a></li>
             </ul>
           </li>

@@ -1,84 +1,73 @@
-<!-- <form [formGroup]="search" (ngSubmit)="searchPost(  )" style="margin-bottom: 25px;">
-  <div class="d-flex justify-content-between">
-    <div class="d-flex">
-      <div class="p-2">
-        <input class="form-control me-2 " type="search" placeholder="Search by title or user" aria-label="Search" formControlName="search">
-      </div>
-      <div class="p-2">
-        <button class="btn btn-outline-dark fourth" type="submit">Search</button>
-      </div>
+<div class="container">
+
+  <div class="col d-flex justify-content-between">
+    <div class="row">
+      <input #searchTerm type="text" (keyup)="searchPost(searchTerm.value)" class="form-control" 
+        placeholder="Search by id or title"/>
     </div>
   </div>
-</form>
- -->
-
-<div class="col container d-flex justify-content-between">
-  <div class="row">
-    <input #searchTerm type="text" (keyup)="searchPost(searchTerm.value)" class="form-control" placeholder="Search by id or title"/>
-  </div>
-</div>
 
 
+  <div class="mt-3" *ngIf="!loading; else loadingBlock">
 
-<div *ngIf="!loading; else loadingBlock">
-
-  <div *ngIf="myProfile" class="container mt-3">
-    <!-- Button trigger modal -->
+      <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       New post
     </button>
-  
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    
+      <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" 
+                                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            
+              
           <div class="form">
             <form [formGroup]="postForm" (ngSubmit)="postSubmit()">          
               <input type="title" class="form-control" placeholder="Title" formControlName="title">
               <!-- <input type="body" class="form-control" id="floatingBody" placeholder="Body" formControlName="body"> -->
               <textarea type="body" class="form-control" placeholder="Text here" formControlName="body" rows="3"></textarea>
             </form>
-          
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="postForm.reset()" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" (click)="postSubmit()" class="btn btn-success" data-bs-dismiss="modal">Publish</button>
-          </div>
-          
-          </div>  
             
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary radius-15" (click)="postForm.reset()" data-bs-dismiss="modal">
+                Cancel
+              </button>
+              <button type="submit" (click)="postSubmit()" class="btn btn-success radius-15" data-bs-dismiss="modal">
+                Publish
+              </button>
+            </div>  
+          </div>  
+              
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-</div>
+  </div> 
 
   <br>
 
 
 
-  <div class="row row-cols-1 row-cols-md-3 g-4"> 
-      <div *ngFor="let post of filterPosts, let i=index" class="col-sm-4">
-        <div class="card border-info mb-4" style="max-width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-center"> {{ post.title }} </h5>
-            <hr>
-            <p class="card-text">{{ post.body | slice:0:33 }}
-              <span *ngIf="post.body.length>=33 ">...</span>
-            </p>
-            <div class="text-center">
-              <a [routerLink]="['/post', post.id]" class="mx-1 btn btn-outline-primary">Read more</a>
-              <a [hidden]="!myProfile" class="mx-1 btn btn-outline-danger">delete</a>
+    <div class="row row-cols-1 row-cols-md-3 g-4"> 
+        <div *ngFor="let post of filterPosts, let i=index" class="col-sm-4">
+          <div class="card border-info mb-4" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title text-center"> {{ post.title }} </h5>
+              <hr>
+              <p class="card-text">{{ post.body | slice:0:33 }}
+                <span *ngIf="post.body.length>=33 ">...</span>
+              </p>
+              <div class="text-center">
+                <a [routerLink]="['/post', post.id]" class="mx-1 btn btn-outline-primary radius-15">Read more</a>
+                <a [hidden]="!myProfile" class="mx-1 btn btn-outline-danger radius-15">delete</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-  </div>
+    </div>
 
-
+</div>
 
 <ng-template #loadingBlock>
   <app-loading class="text-center container mt-5"></app-loading>
