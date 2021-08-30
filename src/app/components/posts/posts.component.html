@@ -60,7 +60,7 @@
               </p>
               <div class="text-center">
                 <a [routerLink]="['/post', post.id]" class="mx-1 btn btn-outline-primary radius-15">Read more</a>
-                <a [hidden]="!myProfile" class="mx-1 btn btn-outline-danger radius-15">delete</a>
+                <a [hidden]="!myProfile" (click)="delPost(post.id)" class="mx-1 btn btn-outline-danger radius-15">delete</a>
               </div>
             </div>
           </div>

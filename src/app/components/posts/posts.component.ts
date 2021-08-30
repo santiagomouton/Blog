@@ -57,7 +57,8 @@ export class PostsComponent implements OnInit {
 
       if( typeof postsData !== 'undefined' ){
         this.posts.push(...postsData)
-        this.loading = false
+        this.filterPosts = this.posts
+        this.loading     = false
       }
     },
 
@@ -74,15 +75,17 @@ export class PostsComponent implements OnInit {
     if( userId == this.storageService.getSessionId() ){
 
       this.posts.push( ...this.storageService.userPostsStorage( userId ) )
-      this.myProfile = true
-      this.loading   = false
+      this.filterPosts = this.posts
+      this.myProfile   = true
+      this.loading     = false
 
     } else{
     /* If not, look for user posts in the api */
       this.blogService.getPostsFromUser( userId ).subscribe( (postsData: Post[]) =>{
 
         this.posts.push(...postsData )
-        this.loading = false
+        this.filterPosts = this.posts
+        this.loading     = false
 
       },
       
@@ -96,7 +99,12 @@ export class PostsComponent implements OnInit {
 
 
   searchPost( searchTerm: string ) {
-    console.log(searchTerm);
+    if ( searchTerm.length == 0 ) {
+      this.filterPosts = this.posts
+    } else {
+      this.filterPosts = [...this.filterPosts.filter( post => post.title.toLowerCase().includes( searchTerm ) ),
+                          ...this.filterPosts.filter( post => post.userId.toString() == searchTerm ) ]
+    }
   }
 
 
@@ -108,6 +116,14 @@ export class PostsComponent implements OnInit {
       this.messageService.messageError( 'Title or text invalid' )
     }
     this.postForm.reset()
+  }
+
+
+  delPost( postId: number ) {
+    if ( this.storageService.deletePost( postId ) ){
+      this.messageService.messageSuccess( 'Post deleted success!' )
+      this.posts.splice( this.posts.findIndex( post => post.id == postId ), 1 )
+    }
   }
 
   

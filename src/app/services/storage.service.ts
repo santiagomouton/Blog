@@ -167,6 +167,17 @@ export class StorageService {
   }
 
 
+  deleteAlbum( albumId: number ): boolean {
+    let indexOfAlbum = this.storageAlbums.findIndex( album => album.id == albumId )
+    if (indexOfAlbum > -1) {
+      this.storageAlbums.splice( indexOfAlbum, 1 )
+      this.setAlbumsInStorage()
+      return true;
+    }
+    return false;
+  }
+
+
   userPostsStorage( userId: number ): Post[] {
     return this.storagePosts.filter( post => post.userId == userId )
   }
@@ -195,6 +206,17 @@ export class StorageService {
 
   getPostById( postId: number ) {
     return this.storagePosts.filter( post => post.id == postId )
+  }
+
+
+  deletePost( postId: number ): boolean {
+    let indexOfPost = this.storagePosts.findIndex( post => post.id == postId )
+    if (indexOfPost > -1) {
+      this.storagePosts.splice( indexOfPost, 1 )
+      this.setPostsInStorage()
+      return true;
+    }
+    return false;
   }
 
 
