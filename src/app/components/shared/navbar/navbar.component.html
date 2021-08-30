@@ -25,7 +25,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" routerLink="{{ myProfileUrl() }}" >My Account</a></li>
               <li><a class="dropdown-item" >Settings</a></li>
-              <li><a class="dropdown-item" [routerLink]="['/login']">Sign Out</a></li>
+              <li><a class="dropdown-item" (click)="storageService.signOut()" [routerLink]="['/login']">Sign Out</a></li>
             </ul>
           </li>
         </ul>

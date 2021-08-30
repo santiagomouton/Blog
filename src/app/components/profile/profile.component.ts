@@ -13,7 +13,7 @@ import { StorageService } from '../../services/storage.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user: any[] = []
+  user: User[] = []
   myProfile: boolean
   loading: boolean
 
@@ -33,7 +33,8 @@ export class ProfileComponent implements OnInit {
     this.activateRoute.params.subscribe( params => {
 
       if( params['id'] == this.storageService.getSessionId() ) {
-        this.user.push( this.storageService.getUserFromStorage( params['id'] ) )
+        this.user = this.storageService.getUserFromStorage( params['id'] ) 
+        console.log(this.user);
         this.loading   = false
         this.myProfile = true
       }
@@ -42,7 +43,6 @@ export class ProfileComponent implements OnInit {
 
           if (typeof userData !== 'undefined') {
             this.user.push( userData )
-            console.log(this.user)
             this.loading = false
           }
 

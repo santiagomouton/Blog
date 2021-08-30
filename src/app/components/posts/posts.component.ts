@@ -24,6 +24,7 @@ export class PostsComponent implements OnInit {
   });
 
   posts: Post[] = []
+  filterPosts: Post[]
   myProfile: boolean
   userId: number
   loading: boolean
@@ -34,6 +35,7 @@ export class PostsComponent implements OnInit {
               private messageService: MessageService
               ) {
     
+    this.filterPosts = this.posts
     this.loading   = true   
     this.myProfile = false
     this.userId = -1         
@@ -77,7 +79,7 @@ export class PostsComponent implements OnInit {
     /* Check if Id corresponds to the actual session */
     if( userId == this.storageService.getSessionId() ){
 
-      this.posts = this.storageService.userPostsStorage( userId )
+      this.posts.push( ...this.storageService.userPostsStorage( userId ) )
       this.myProfile = true
       this.loading   = false
       this.userId = userId 
@@ -100,16 +102,8 @@ export class PostsComponent implements OnInit {
   }
 
 
-  searchPost() {
-    if ( this.search.status !== 'INVALID' ) {
-      this.posts = []
-      console.log(this.search.value);
-      //this.getPostsFromUser.
-      this.search.reset()
-    }
-    else{
-      //this.search.reset()
-    }
+  searchPost( searchTerm: string ) {
+    console.log(searchTerm);
   }
 
 

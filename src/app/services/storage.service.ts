@@ -74,18 +74,18 @@ export class StorageService {
   }
 
 
+  signOut() {
+    sessionStorage.removeItem( 'session' )
+  }
+
+
   getAllUsersFromStorage(): UserAndPass[] {
     return JSON.parse(localStorage.getItem( 'users' ) || '[]')
   }
 
 
-  getUserFromStorage( userId: number ): User | null {
-    for( let usr of this.getAllUsersFromStorage() ) {
-      if( usr.user.id == userId ){
-        return usr.user
-      }
-    }
-    return null
+  getUserFromStorage( userId: number ): User[] {
+    return this.getAllUsersFromStorage().filter( userAndPass => userAndPass.user.id = userId ).map(user => user['user'])
   }
 
 

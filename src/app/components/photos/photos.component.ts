@@ -12,6 +12,7 @@ import { Photo } from '../../models/blogModels';
 export class PhotosComponent implements OnInit {
 
   photos:     Photo[] = []
+  myProfile:  boolean
   loading:    boolean
   viewPhoto:  boolean
   indexPhoto: number
@@ -20,6 +21,7 @@ export class PhotosComponent implements OnInit {
               private blogService: BlogService
               ) { 
 
+    this.myProfile = false
     this.loading    = true
     this.viewPhoto  = false
     this.indexPhoto = -1

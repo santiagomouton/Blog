@@ -1,4 +1,4 @@
-<form [formGroup]="search" (ngSubmit)="searchPost(  )" style="margin-bottom: 25px;">
+<!-- <form [formGroup]="search" (ngSubmit)="searchPost(  )" style="margin-bottom: 25px;">
   <div class="d-flex justify-content-between">
     <div class="d-flex">
       <div class="p-2">
@@ -10,11 +10,19 @@
     </div>
   </div>
 </form>
+ -->
+
+<div class="col container d-flex justify-content-between">
+  <div class="row">
+    <input #searchTerm type="text" (keyup)="searchPost(searchTerm.value)" class="form-control" placeholder="Search by id or title"/>
+  </div>
+</div>
 
 
-<div class="animated fadeIn" *ngIf="!loading; else loadingBlock">
 
-  <div *ngIf="myProfile">
+<div *ngIf="!loading; else loadingBlock">
+
+  <div *ngIf="myProfile" class="container mt-3">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       New post
@@ -46,25 +54,33 @@
     </div>
   </div>
 
+</div>
+
   <br>
 
+
+
   <div class="row row-cols-1 row-cols-md-3 g-4"> 
-      <div *ngFor="let post of posts, let i=index" class="col-sm-4">
+      <div *ngFor="let post of filterPosts, let i=index" class="col-sm-4">
         <div class="card border-info mb-4" style="max-width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title"> Post #{{ i+1 }} </h5>
-            <p class="card-text"> {{ post.title }} </p>
-            <a [routerLink]="['/post', post.id]" class="btn btn-outline-primary">Read more</a>
-            
-            <a [hidden]="!myProfile" class="btn btn-outline-danger">delete</a>
-      
+            <h5 class="card-title text-center"> {{ post.title }} </h5>
+            <hr>
+            <p class="card-text">{{ post.body | slice:0:33 }}
+              <span *ngIf="post.body.length>=33 ">...</span>
+            </p>
+            <div class="text-center">
+              <a [routerLink]="['/post', post.id]" class="mx-1 btn btn-outline-primary">Read more</a>
+              <a [hidden]="!myProfile" class="mx-1 btn btn-outline-danger">delete</a>
+            </div>
           </div>
         </div>
       </div>
   </div>
 
-</div>
+
 
 <ng-template #loadingBlock>
-  <app-loading></app-loading>
+  <app-loading class="text-center container mt-5"></app-loading>
 </ng-template>
+

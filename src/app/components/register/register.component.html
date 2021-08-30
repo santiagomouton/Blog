@@ -1,4 +1,4 @@
-<body class="text-center">
+<body class="text-center animated fadeIn fast">
     <div class="form-signin">
         <form [formGroup]="registerData" (ngSubmit)="registerSubmit()">
         <img class="mb-4" src="/assets/img/blogger_dark.svg" alt="" width="72" height="57">
@@ -44,9 +44,9 @@
             <input type="company" class="form-control" id="floatingCompany" placeholder="company" formControlName="company">
             <label for="floatingCompany">Company</label>
         </div>
-
     
             <button class="w-100 btn btn-lg btn-primary" type="button" type="submit">Sign up</button>
+            <a class="m-4 btn btn-secondary" routerLink="login">Back to login</a>
         </form>
     </div>
 </body>

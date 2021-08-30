@@ -49,8 +49,7 @@ export class AlbumsComponent implements OnInit {
     this.blogService.getAlbums().subscribe( (albumsData: Album[]) => {
 
       if( typeof albumsData !== 'undefined' ){
-        this.albums.push(...albumsData)  
-        console.log(this.albums);
+        this.albums.push(...albumsData)
         this.loading = false
       }
 

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { BlogService } from '../../services/blog.service';
 import { Post, User, Comment } from '../../models/blogModels';
 import { MessageService } from '../../services/message.service';
 import { AvatarService } from '../../services/avatar.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +21,8 @@ export class PostComponent implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
               private blogService: BlogService,
-              public  avatarService: AvatarService
+              public  avatarService: AvatarService,
+              private storageService: StorageService
               ) {
     
     this.loading = true
@@ -37,16 +40,26 @@ export class PostComponent implements OnInit {
 
 
   getPost( postId: number ) {
-    this.blogService.getPost( postId ).subscribe((postData: Post) => {
 
-      if (typeof postData !== 'undefined') {
-        this.post.push( postData )
-        this.getUser( this.post[0].userId )
-      }
+    let post = this.storageService.getPostById( postId )
+    if ( post[0] != null ) {
+      console.log(post);
+      this.post = post
+      this.user = this.storageService.getUserFromStorage( post[0].userId )
+      this.loading = false
+    } 
+    else {
+      this.blogService.getPost( postId ).subscribe((postData: Post) => {
 
-    },
-      (error: any) => console.log(error)
-    )
+        if (typeof postData !== 'undefined') {
+          this.post.push( postData )
+          this.getUser( this.post[0].userId )
+        }
+
+      },
+        (error: any) => console.log(error)
+      )
+    }
   }
   
 
