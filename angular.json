@@ -27,7 +27,6 @@
               "src/assets"
             ],
             "styles": [
-              
               "src/styles.css"
             ],
             "scripts": []
@@ -95,14 +94,25 @@
               "src/assets"
             ],
             "styles": [
-              
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "blog"
+  "defaultProject": "blog",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
