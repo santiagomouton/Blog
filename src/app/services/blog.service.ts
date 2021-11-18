@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
 import { User, Post, Comment, Album, Photo, Todo } from '../models/blogModels';
 
@@ -34,8 +35,10 @@ export class BlogService {
   }
 
 
-  getPosts(): Observable<Post[]> {
-    return this.getQuery( 'posts' );
+  getPosts( filter: string= '' ): Observable<Post[]> {
+    return this.getQuery( 'posts' ).pipe(
+      map( resp => resp[filter] )
+    );
   }
 
 
