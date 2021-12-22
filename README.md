@@ -13,4 +13,4 @@ One of the first angular projets
 1- Change the back and delete button in photos    
 3- Change the register design page
 
-[DEMO](blog-a2a75.firebaseapp.com)
+## [Demo](blog-a2a75.firebaseapp.com)
