@@ -1,12 +1,16 @@
 # Blog  
 
-Requeriments to implements:
+One of the first angular projets
+
+## Requeriments to implements:
 
 1- TODOs seccion  
 2- Add photos in the account  
 3- Edit the profile  
 
-Modify:
+## Modify:
 
 1- Change the back and delete button in photos    
 3- Change the register design page
+
+[DEMO](blog-a2a75.firebaseapp.com)
